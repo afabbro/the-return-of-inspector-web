@@ -1,0 +1,271 @@
+!!! 5
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Return of Inspector Web
+
+    //- Check out 'src/bower_components/prism/' for available themes
+    link(rel='stylesheet', type='text/css', href='bower_components/prism/themes/prism-tomorrow.css')
+
+    link(rel='stylesheet', type='text/css', href='styles/main.css')
+
+  body
+
+    article
+
+      // Intro talk & self
+      section
+        h1 Return of Inspector Web
+        p [Pink panther or some inspector as bg]
+        p [Music should be playing]
+
+      section
+        h2.left Lots to cover:
+        h2.right Questions over drinks
+
+      section
+        h2 I'm Angelina Fabbro
+        p Vancouver background
+
+      section
+        h2.left I work at Mozilla
+        h2.right We try and do good things for the web &amp; humanity
+        p [background red panda freaking out over pumpkin]
+
+      section
+        h2.left Once upon a time...
+        h2.right ...I gave a talk on web components
+        p [screenshot of JSConf EU 2012 as BG]
+        p [music should wrap up about now]
+
+      // Intro web components - terminology & problems they solve
+
+      section
+        h2 Web Components are the new HTML 5
+        p [background is a picture of a nice hat, cat in the hat hat!]
+
+      section
+        h2 The point?
+        p [bg is something pointy]
+
+      // Go through each web component technology  
+      // ---
+      // Shadow DOM
+
+      section
+        h2 Shadow DOM
+
+      section
+        code.language-html
+          pre.
+            <ul class="stories">
+                <li><a href="//example.com/stories/1">A story</a></li>
+                <li><a href="//example.com/stories/2">Another story</a></li>
+                <li class="breaking"><a href="//example.com/stories/3">Also a story</a></li>
+                <li><a href="//example.com/stories/4">Yet another story</a></li>
+                <li><a href="//example.com/stories/4">Awesome story</a></li>
+                <li class="breaking"><a href="//example.com/stories/5">Horrible story</a></li>
+            </ul>
+
+      section
+        h2 CSS for Shadow Trees
+
+      section
+        h2 Reaching Out
+
+      section
+        h2 The @host rule
+
+      section
+        h2 ::content
+
+      section
+        h2 Reaching In
+
+      section
+        h2 ::part
+
+      section
+        h2 Specification Status
+
+      section
+        h2 Browser Support
+
+      // HTML Templates
+
+      section
+        h2 HTML Templates
+
+      section
+        h2 [explanation about HTML templates, code]
+
+      section
+        h2 Specification Status
+
+      section
+        h2 Browser Support
+
+      // HTML Imports
+
+      section
+        h2 HTML Imports
+
+      section
+        h2 [explanation about HTML Imports, code]
+
+      section
+        h2 Specification Status
+
+      section
+        h2 Browser Support
+
+      // Custom Elements
+
+      section
+        h2.left Custom Elements
+        h2.right (imperative)
+
+      section
+        h2 [explanation about custom elements, code]
+
+      section
+        h2 Specification Status
+
+      section
+        h2 Browser Support
+
+      section
+        h2.left Custom Elements
+        h2.right (declarative)
+
+      section
+        h2 aka &lt;element&gt; element
+        p [silly picture of element symbol of 'nonsense element']
+        p [price is right horn on click]
+
+      section
+        h2 [explain what the technology was supposed to be like]
+
+      section
+        h2 [explain problem]
+
+      section
+        h2 [explain potential solutions with ES6 subclasses]
+
+      section
+        h2 Obligatory mention:
+        
+      section
+        h2 Decorators
+
+      section
+        h2 [Explain decorators, show code]
+
+      section
+        h2 Specification Status
+        h2 N/A
+      // Discuss polyfills
+
+      section 
+        h2 Polyfills
+
+      section
+        h2 [previously Dimitry's polyfill, now polymer project]
+
+      section
+        h2 [explain what it polyfills and what it doesn't]
+
+      // Discuss frameworks and libraries
+
+      section
+        h2 Libraries and Frameworks
+
+      section
+        h2 X-Tags and Brick
+
+      section
+        h2 [examples]
+
+      section
+        h2 Pros and Cons
+
+      section
+        h2 Polymer project
+
+      section
+        h2 Obligatory mention: Angular
+
+      section
+        h2 Obligatory mention: Ember
+
+      section
+        h2 For fun: Angular + X-Tags
+
+      section
+        h2 Resources for Web Components
+
+      section
+        h2 [List of links!]
+
+      section
+        h2 Conclusion
+
+      // End Slide
+
+      section
+        h2 Thanks Fronteers!
+        h2 love,
+        h2 Angelina Fabbro
+        h2 @angelinamagnum
+        h2 angelina@mozilla.com
+        
+
+      section
+        h2 Bullet List
+        h3.bullet Powered by <a href="https://github.com/markdalgleish/bespoke-bullets">bespoke-bullets</a>
+        ul
+          li Bullet 1
+          li Bullet 2
+          li Bullet 3
+
+      section
+        h2 Syntax Highlighting
+        h3.bullet Powered by <a href="http://twitter.com/LeaVerou">Lea Verou</a>'s <a href="https://github.com/LeaVerou/prism">Prism</a>
+        hr
+        code.language-javascript
+          pre.
+            bespoke.horizontal.from('article', {
+              bullets: 'li, .bullet',
+              hash: true,
+              state: true
+            });
+
+      section(data-bespoke-hash='named-route')
+        h2 Named Route
+        h3.bullet Powered by <a href="https://github.com/markdalgleish/bespoke-hash">bespoke-hash</a>
+        p Look up! This route has been named with a <em>'data-bespoke-hash'</em> attribute.
+
+      section(data-bespoke-state='emphatic')
+        h2 Emphatic Slide!
+        h3.bullet Powered by <a href="https://github.com/markdalgleish/bespoke-state">bespoke-state</a>
+
+      section
+        h2.bullet Just the beginning...
+        hr
+        ul
+          li Edit <a href="http://jade-lang.com/">Jade</a> markup in <em>'src/index.jade'</em>
+          li Edit <a href="http://learnboost.github.io/stylus/">Stylus</a> styles in <em>'src/styles/main.styl'</em>
+          li Edit JavaScript in <em>'src/scripts/main.js'</em>
+        hr
+        ul
+          li
+            strong Enjoy! :)
+            a(href='http://twitter.com/markdalgleish')  -@markdalgleish
+
+    script(src='bower_components/bespoke.js/dist/bespoke.min.js')
+    script(src='bower_components/bespoke-bullets/dist/bespoke-bullets.min.js')
+    script(src='bower_components/bespoke-hash/dist/bespoke-hash.min.js')
+    script(src='bower_components/bespoke-state/dist/bespoke-state.min.js')
+    script(src='bower_components/prism/prism.js')
+    script(src='scripts/main.js')

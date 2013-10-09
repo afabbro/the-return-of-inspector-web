@@ -1,0 +1,73 @@
+Return of Inspector Web
+
+
+0:00
+
+"Hello, I'm Angelina Fabbro. I work for Mozilla on Firefox OS, and I happen to really like web components. A little over a year ago, I gave a talk at JSConf EU on web components, focusing primarily on the 'glue' technology of web components known as Shadow DOM. In today's talk we're going to re-visit the topic of web components to see just far these technologies have come in the past year. If this is your first exposure to this material, don't worry. The first thing we're going to do is a quick review of what web components are - what they do and what problems they were meant to solve for us. After that, we're going to dive into how the specifications have changed from a year ago compared with now, their implementation status in various browsers, available polyfills and shim solutions, and finally toward the end we will touch upon some really cool libraries and frameworks embracing these features."
+
+"First thing first - the term web components refers to an aggregate of technologies that enables web developers to design client-side web applications in a different and progressive way. Namely, these technologies implore developers to make encapsulated, modular, and reusable pieces of code. Ideally, this leads to loosely-coupled programs that are easier to maintain and refactor as they grow and change with demand."
+
+"These technologies are Shadow DOM, HTML Templates, HTML Imports, Custom Elements."
+
+"A Shadow DOM is an HTML Document Fragment that lives inside of a conventional DOM element. If it sounds a bit strange, that's because it is. When you insert a shadow dom into a regular dom node, the rendering of the host node is replaced with the rendered contents of the shadow dom tree. Thw shadow dom has a soft boundary of encapsulation that keeps the parent scope from knowing anything about it's contents unless a developer specifies otherwise. If you were traverse a document that contained five div elements but one contained a shadow dom with three more, you would still only find five divs. Your global scope knows nothing of the encapsulated scope of the shadow dom. This feature allows developers to introduce encapsulation into their front-end code in the DOM, something that we really only had Javascript as an option for in the past. Or, well, iFrames, and who doesn't love working with those?"
+
+"An HTML template is a piece of inert markup contained within the <template> tag. When the browser encounters a template, it is parsed but not rendered. The template is used when it is instantiated either imperitively using Javascript or declaritively using a custom element, the latter of which we'll get to in a moment. A template can contain it's own Javascript and CSS to give it some presentation and behavior. They can be reused - every time you instantiated a new <widget>, you get exactly one new <widget>. Essentially this has introduced client-side templating built right into the browser. You can concatenate your templates into one file so that when you load your application, only one request is made to grab them all. In theory, you could concatenate them onto the end of your main application document if you don't mind squishing them in there and if you're really concerned about the overhead of an extra HTTP request."
+
+"An HTML template can be loaded with an HTML Import if it not appended to your main applciation document. This syntax should look familiar, because this is the same way we load CSS. Now we can load HTML templates the same way. When the browser encounters an HTML import, it is loaded synchronously just as a CSS file would be. Unfortunately there is no way to use async or defer flags on HTML imports the way you might scripts, though in the fantasy world in my head this exists. This stuff is so still new enough that we're not there yet. You can also use HTML imports from within another template, and when that template instantiates your widget an HTTP request will be made to grab whatever resource that points to so long as the request conforms to the same-domain policy. Personally I find the potential to nest and chain imports a bit of a rabbit hole and I don't know that I would recommend it, I can see performance going south on this really quick. But hey, somebody out there will probably come up with some realy clever use of this since you're all very smart people."
+
+"HTML imports - non-blocking, woo, unlike style import counterparts"
+
+"My favorite part of web components is custom elements, or rather, the <element> element, and I'm sure I'm not alone in that. Unfortunately, the spec for this aspect of web compoennts is currently on hold due to (grab latest thread discussion wher Dmitry closed discussion)"
+
+"If you take a look at all the materials that have surfaces over the last year about web components and look at the features discussed, one you will almost always find missing is Decorators. Using <template> tags, a developer can specify presentational markup that is then applied using CSS. Decorators also make use of Shadow DOM, and so the host of the decorator is rendered using the shadow tree specified by the <template>. This is actually quite an interesting idea considering that historically designers have prollyfilled their own features like border-radius by using multiple divs and finely sliced u"
+
+- "But what about decorators?"
+
+Polyfills, libs, and implementation status
+- Polymer (and Google's polyfill)
+- X-Tags and Brick
+- Angular + Brick (?)
+
+- why no implementation in Mozilla - engine differences, XBL implementation for vid element, whereas webkit already had shadow DOM like implementation and was/is easier to expose
+
+- That component gallery
+- App maker
+
+section
+	h1 I'm Angelina Fabbro
+
+section
+	h1 I work for Mozilla
+
+section
+	h1 JSConf EU 2012:
+	h2 Inspector Web and the Mystery of the Shadow DOM
+
+section
+	p (Screenshot of video from last year)
+
+section
+	h1 Web Components: Another Hat
+
+section
+	h1 The term 'Web Components' is the new 'HTML 5'
+
+section
+	ul
+		li Shadow DOM 
+		li HTML Templates
+		li HTML Imports
+		li Custom Elements
+		li Decorators (I guess?)
+
+section
+	h1 Helping Web Detectives Solve Problems
+	ul
+		li Encapsulation
+		li Reusable templates (templating right in the browser)
+		li External resource loading of structural resources, not just scripts and CSS anymore (HTML)
+		li Custom declaritive elements
+		li 
+
+
+
