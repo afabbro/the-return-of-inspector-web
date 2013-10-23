@@ -1,0 +1,129 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>The Return of Inspector Web: Web Components a Year Later</title><link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Pathway+Gothic+One|Noto+Serif:400,400italic"><link rel="stylesheet" type="text/css" href="bower_components/prism/themes/prism-coy.css"><link rel="stylesheet" type="text/css" href="bower_components/prism/plugins/line-numbers/prism-line-numbers.css"><link rel="stylesheet" type="text/css" href="styles/main.css"></head><body><article><!-- Intro talk & self--><section class="title"><h1>The Return of Inspector Web</h1><img src="img/inspector-pony.png" class="pony"><div><a href="http://stephastated.deviantart.com/art/go-go-gadget-PONY-261977395"><small>Inspector Pony by 123inkt.nl</small></a></div></section><section class="cover"><img src="img/vancouver-rain.gif"><div class="tint"><h2>I'm Angelina Fabbro</h2><h2>I'm from Vancouver, Canada</h2><h2>@angelinamagnum</h2><h2>follow for slides &amp; pandavangelism</h2></div></section><section class="cover"><img src="img/firefox.jpg"></section><section class="cover"><img src="img/JSConfEU2012.jpg"><div class="tint"><h2>Once upon a time...</h2><h2>...I gave a talk on web components</h2><a href="http://www.youtube.com/watch?v=JNjnv-Gcpnw"> <h3>Watch here</h3></a></div></section><!-- Intro web components - terminology & problems they solve--><section class="white"><h2>Web Components are the new HTML 5</h2><img src="img/webcomponents.png"></section><!-- Go through each web component technology  --><!-- -----><!-- Shadow DOM--><section class="cover"><img src="img/spooky.gif"><h2 class="tint">Shadow DOM</h2></section><section><h2>Key Concepts:</h2><ul><li><h3>Encapsulation</h3></li><li><h3>Rendering of Shadow Tree replaces that of Host Tree</h3></li></ul></section><section><img src="img/did-you-know.jpg" class="full-height"></section><section><ul><li> <img src="http://lorempixel.com/200/200/cats/1/"></li><li><img src="http://lorempixel.com/200/200/cats/2/"></li><li><img src="http://lorempixel.com/200/200/cats/3/"></li></ul></section><section><code class="language-markup"><pre>&lt;ul id=&quot;cats&quot;&gt;
+    &lt;li&gt;
+      &lt;img src=&quot;http://lorempixel.com/200/200/cats/1/&quot;&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;awesome&quot;&gt;
+      &lt;img src=&quot;http://lorempixel.com/200/200/cats/2/&quot;&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;awesome&quot;&gt;
+      &lt;img src=&quot;http://lorempixel.com/200/200/cats/3/&quot;&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+</pre></code></section><section><code class="language-javascript"><pre>var cats = document.getElementById('cats');
+var shadow_cats = cats.createShadowRoot();
+shadow_cats.innerHTML = &quot;&lt;li&gt;The awesome cats are:&lt;/li&gt;&lt;content select='.awesome'&gt;&lt;/content&gt;&quot;
+</pre></code></section><section><ul><li>The awesome cats are:</li><li><img src="http://lorempixel.com/200/200/cats/2/"></li><li><img src="http://lorempixel.com/200/200/cats/3/"></li></ul></section><section><h2>DEMO!</h2><h2>http://afabbro.github.io/webcomponents-native</h2><h2>http://github.com/afabbro/webcomponents-native</h2></section><section><h2>The @host rule for CSS</h2></section><section><code class="language-css"><pre>@host {
+  display: block;
+  padding: 40px;
+  border: 2px dotted purple;
+}
+</pre></code></section><section><ul class="host-example"><li>The awesome cats are:</li><li><img src="http://lorempixel.com/200/200/cats/4/"></li><li><img src="http://lorempixel.com/200/200/cats/5/"></li></ul></section><section><h2>Pseudo-Elements</h2></section><section><h2>::content</h2><h2>formerly ::distributed(li)</h2><h2>.awesome::content li</h2></section><section><h2>::part</h2></section><section><code class="language-javascript"><pre>var component = document.createElement('div');
+var root = component.createShadowRoot();
+var control = document.createElement('div');
+control.pseudo = 'control';
+root.appendChild(control);
+</pre></code></section><section><code class="language-css"><pre>component::part(control) {
+  width: 20px;
+  height: 20px;
+  color: blue;
+  border-radius: 20px
+}
+</pre></code></section><section><h2>Shadow DOM Browser Support</h2><ul><li><h2 class="maybe">Firefox: SOON</h2></li><li><h2 class="yay">Chrome: YES</h2></li><li><h2 class="boo">IE: NO</h2></li></ul></section><!-- HTML Templates--><section><h2>HTML Templates</h2></section><section><code class="language-markup"><pre>&lt;template id=&quot;cats-template&quot;&gt;
+  &lt;style scoped&gt;
+    ul {
+      list-style-type: none;
+    }
+    ul li {
+      padding: 2%;
+      border-radius: 10px;
+      border: 2px dashed blue;
+      float: left;
+      margin: 0 5% 5% 0;
+    }
+  &lt;/style&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;img src=&quot;http://lorempixel.com/300/300/cats/2/&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;http://lorempixel.com/300/300/cats/4/&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img src=&quot;http://lorempixel.com/300/300/cats/6/&quot;&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/template&gt;</pre></code></section><section><code class="language-javascript"><pre>var host = document.getElementById('host');
+var shadow = host.createShadowRoot();
+shadow.appendChild(document.getElementById('cats-template').content);
+</pre></code></section><section><h2>DEMO!</h2></section><section><h2>&lt;style scoped&gt; Browser Support</h2><ul><li><h2 class="yay">Firefox: YES</h2></li><li><h2 class="maybe">Chrome: YES (Flag)</h2></li><li><h2 class="boo">IE: NO</h2></li></ul></section><section><h2>HTML Templates Browser Support</h2><ul><li><h2 class="yay">Firefox: YES</h2></li><li><h2 class="yay">Chrome: YES</h2></li><li><h2 class="boo">IE: NO</h2></li></ul></section><!-- HTML Imports--><section><h2>HTML Imports</h2></section><section><code class="language-markup"><pre>&lt;link rel=&quot;import&quot; href=&quot;import-cats.html&quot;&gt;
+</pre></code></section><section><h2>DEMO!</h2></section><section><h2>Browser Support</h2><ul><li><h2 class="maybe">Firefox: SOON</h2></li><li><h2 class="maybe">Chrome: YES (Flag)</h2></li><li><h2 class="boo">IE: NO</h2></li></ul></section><!-- Custom Elements--><section><h2>Custom Elements</h2><h2>&lt;custom-element&gt;&lt;/custom-element&gt;</h2></section><section><code class="language-javascript"><pre>var XFoo = document.register('my-widget');
+document.body.appendChild(new MyWidget());
+</pre></code></section><section><code class="language-javascript"><pre>var MyWidget = document.register('my-widget', {
+  prototype: Object.create(HTMLElement.prototype)
+});      
+</pre></code></section><section><h2>Custom Tags</h2><h2>vs </h2><h2>Type Extensions</h2></section><section><code class="language-javascript"><pre>document.createElement('my-widget')
+new MyWidget()
+</pre></code></section><section><code class="language-markup"><pre>&lt;my-widget&gt;&lt;/my-widget&gt;
+&lt;div is=&quot;my-widget&quot;&gt;&lt;/div&gt;
+</pre></code></section><section><h2>:unresolved </h2></section><section><code class="language-css"><pre>my-widget {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+my-widget:unresolved {
+  opacity: 0;
+}
+</pre></code></section><section><h2>Browser Support for document.register</h2><ul><li><h2 class="maybe">Firefox: YES (Pref)</h2></li><li><h2 class="maybe">Chrome: YES (Flag)</h2></li><li><h2 class="boo">IE: NO</h2></li></ul></section><section><h2>More On Custom Tags Shortly!</h2></section><section><h2>Type Extensions</h2><h2>aka &lt;element&gt; element</h2></section><section><h2>Takin' a Nap Because Problems</h2><h2>Removed from the spec</h2><h3><a href="http://lists.w3.org/Archives/Public/public-webapps/2013JulSep/0287.html">Extensive details here</a></h3></section><section><h2>Obligatory mention: Decorators</h2></section><section><code class="language-markup"><pre>&lt;decorator id=&quot;details-open&quot;&gt;
+  &lt;template&gt;
+      &lt;a id=&quot;summary&quot;&gt;
+        &blacktriangledown;
+        &lt;content select=&quot;summary&quot;&gt;&lt;/content&gt;
+      &lt;/a&gt;
+      &lt;content&gt;&lt;/content&gt;
+  &lt;/template&gt;
+&lt;/decorator&gt;
+</pre></code></section><section><code class="language-css"><pre>details[open] {
+  decorator: url(#details-open);
+}
+</pre></code></section><section><code class="language-markup"><pre>&lt;details open&gt;
+    &lt;summary&gt;Timepieces&lt;/summary&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Sundial
+      &lt;li&gt;Cuckoo clock
+      &lt;li&gt;Wristwatch
+    &lt;/ul&gt;
+&lt;/details&gt;
+</pre></code></section><section><img src="img/rendered-decorator.png"></section><section><img src="img/custom-elements-decorators.png"></section><!-- Discuss frameworks and libraries--><section><h2>Polyfills, Libraries, and Frameworks</h2></section><section><h2>X-Tags and Brick</h2></section><section><code class="language-markup"><pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;!-- 1. Load X-Tags/Brick Stuff --&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;brick-1.0beta8.css&quot;/&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;brick-1.0beta8.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- 2. Declare the component by its tag. --&gt;
+    &lt;x-datepicker&gt;&lt;/x-datepicker&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre></code></section><section><h2>Polymer Project</h2></section><section><h2>web components + sugar</h2><h2>e.g. MDV, Pointer Events</h2></section><section><code class="language-markup"><pre>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;!-- 1. Load Polymer --&gt;
+    &lt;script src=&quot;polymer.min.js&quot;&gt;&lt;/script&gt;
+    &lt;!-- 2. Load a component --&gt;
+    &lt;link rel=&quot;import&quot; href=&quot;x-foo.html&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- 3. Declare the component by its tag. --&gt;
+    &lt;x-foo&gt;&lt;/x-foo&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre></code></section><section><h2>Polymer: 168k </h2><h2>Angular: 81k</h2><h2>X-Tag: 63k</h2></section><section><h2>The Price of Compatibility</h2></section><section><h2>Obligatory mention: Angular Directives</h2></section><section><code class="language-markup"><pre>&lt;!-- 1: as an attribute declaration --&gt;
+&lt;a custom-button&gt;Click me&lt;/a&gt;
+
+&lt;!-- 2: as a custom element --&gt;
+&lt;custom-button&gt;Click me&lt;/custom-button&gt;
+
+&lt;!-- 3: as a class (used for old IE compat) --&gt;
+&lt;a class=&quot;custom-button&quot;&gt;Click me&lt;/a&gt;
+</pre></code></section><section><code class="language-javascript"><pre>myApp.directive('customButton', function () {
+  return {
+    templateUrl: 'templates/customButton.html'
+    // directive stuff...
+  };
+});
+</pre></code></section><section><h2>Obligatory mention: Ember Components</h2></section><section><img src="img/browserponies.png" class="full-height"></section><section><h2>The Extensible Web Manifesto</h2><h3>Tighten the feedback look between devs and spec!</h3><a href="http://extensiblewebmanifesto.org/"><h3>Identify patterns in dev? Give feedback.</h3></a></section><section><h2>Before I go: SOMETHING AWESOME</h2><h2> <a href="http://flathead.herokuapp.com/designer">Mozilla AppMaker</a></h2></section><section class="list"><h2>Choice Resources</h2><ul><li><a href="https://dvcs.w3.org/hg/webcomponents/raw-file/ccd579693e46/explainer/index.html"><h3>Web Components Explainer</h3></a></li><li><a href="http://flathead.herokuapp.com/designer"> <h3>Mozilla AppMaker</h3></a></li><li><a href="http://www.x-tags.org/"><h3>Mozilla X-Tags</h3></a></li><li><a href="http://mozilla.github.io/brick/"><h3>Mozilla Brick</h3></a></li><li><a href="http://www.polymer-project.org/"><h3>Polymer Project</h3></a></li><li> <a href="http://html5-demos.appspot.com/static/shadowdom-visualizer/index.html"> <h3>Shadow DOM Visualizer</h3></a></li><li> <a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/"> <h3>HTML5 Rocks - Shadow DOM 101</h3></a></li><li><a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-201/"><h3>HTML 5 Rocks - Shadow DOM 201</h3></a></li><li><a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom-301/"><h3>HTML 5 Rocks - Shadow DOM 301</h3></a></li><li><a href="http://www.html5rocks.com/en/tutorials/webcomponents/customelements/"> <h3>HTML5 Rocks - Custom Elements</h3></a></li></ul></section><!-- End Slide--><section class="cover"><img src="img/finale.gif"><div class="right"><div class="tint"><h2>Thanks Fronteers!</h2><h2>love,</h2><h2>Angelina Fabbro</h2><h2>@angelinamagnum</h2><h2>angelina@mozilla.com</h2></div></div></section></article><script src="bower_components/bespoke.js/dist/bespoke.min.js"></script><script src="bower_components/bespoke-bullets/dist/bespoke-bullets.min.js"></script><script src="bower_components/bespoke-hash/dist/bespoke-hash.min.js"></script><script src="bower_components/bespoke-state/dist/bespoke-state.min.js"></script><script src="bower_components/prism/prism.js"></script><script src="bower_components/prism/plugins/line-numbers/prism-line-numbers.min.js"></script><script src="scripts/main.js"></script></body></html>
